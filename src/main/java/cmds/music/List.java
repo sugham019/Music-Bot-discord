@@ -27,7 +27,7 @@ public class List implements Command {
         embedBuilder.setColor(Color.CYAN);
 
         embedBuilder.appendDescription("**Currently Playing : **" + currentlyPlaying.getInfo().title);
-        embedBuilder.appendDescription("\n **Queue : **\n");
+        embedBuilder.appendDescription("\n **Queue : **");
         int sn = 1;
         for (AudioTrack track : queuedTracks){
             embedBuilder.appendDescription("\n"+sn + ")" + track.getInfo().title);
