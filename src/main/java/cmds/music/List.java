@@ -26,12 +26,17 @@ public class List implements Command {
         embedBuilder.setTitle("Track list");
         embedBuilder.setColor(Color.CYAN);
 
-        embedBuilder.appendDescription("**Currently Playing : **" + currentlyPlaying.getInfo().title);
+        if (currentlyPlaying != null)
+            embedBuilder.appendDescription("**Currently Playing : **" + currentlyPlaying.getInfo().title);
+
         embedBuilder.appendDescription("\n **Queue : **");
+
         int sn = 1;
-        for (AudioTrack track : queuedTracks){
-            embedBuilder.appendDescription("\n"+sn + ")" + track.getInfo().title);
-            sn++;
+        if (!queuedTracks.isEmpty()) {
+            for (AudioTrack track : queuedTracks) {
+                embedBuilder.appendDescription("\n" + sn + ")" + track.getInfo().title);
+                sn++;
+            }
         }
         event.replyEmbeds(embedBuilder.build()).queue();
 
