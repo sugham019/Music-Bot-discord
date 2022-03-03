@@ -57,8 +57,13 @@ public class PlayerManager{
         playerManager.loadItemOrdered(musicManager, song, new AudioLoadResultHandler() {
             @Override
             public void trackLoaded(AudioTrack track) {
-                event.reply("Adding to queue " + track.getInfo().title).queue();
-                musicManager.scheduler.queue(track);
+                try {
+                    musicManager.scheduler.queue(track);
+                    event.reply("Added to queue :" + track.getInfo().title).queue();
+                }catch (Exception exception){
+                    event.reply("Failed to add :" + track.getInfo().title).queue();
+                }
+
             }
 
             @Override
@@ -67,10 +72,13 @@ public class PlayerManager{
                 if (firstTrack == null) {
                     firstTrack = playlist.getTracks().get(0);
                 }
+                try {
+                    musicManager.scheduler.queue(firstTrack);
+                    event.reply("Added to queue :" + firstTrack.getInfo().title + " (first track of playlist " + playlist.getName() + ")").queue();
+                }catch(Exception exception){
+                    event.reply("Failed to add :" + firstTrack.getInfo().title + " (first track of playlist " + playlist.getName() + ")").queue();
+                }
 
-                event.reply("Adding to queue " + firstTrack.getInfo().title + " (first track of playlist " + playlist.getName() + ")").queue();
-
-                musicManager.scheduler.queue(firstTrack);
             }
 
             @Override

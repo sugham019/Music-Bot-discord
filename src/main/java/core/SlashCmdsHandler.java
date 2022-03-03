@@ -35,7 +35,7 @@ public class SlashCmdsHandler {
         final Guild zeGuild = jda.getGuilds().get(0);
 
 
-        updateSlashCommands(zeGuild);// for updating slash command only for above guild
+//        updateSlashCommands(zeGuild);// for updating slash command only for above guild
 //        updateSlashCommands(0); // for updating slash commands globally
     }
 
